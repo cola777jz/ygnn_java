@@ -13,6 +13,7 @@ public class SinDomain {
         for (int i = 0; i < 1000_0000; i++) {
             sum += Math.sin(i);
         }
+        System.out.println("sum = " + sum);
         long end = System.currentTimeMillis();
         System.out.println((end - start) + " ms");
     }
