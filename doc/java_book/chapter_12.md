@@ -13,6 +13,8 @@ Java 是通过 I/O 流技术完成数据读写操作的。流是由无结构化�
 
 无论是流入还是流出，其数据都是通过一个管道进行的，管道两端分别连接数据源和数据目的地。流的本质就是进行数据传输，因此 Java 根据数据传输的特性将流抽象成各种类，以方便进行数据操作。
 
+![image-20230927215632698](https://yong-gan-niu-niu-1311841992.cos.ap-beijing.myqcloud.com/images/image-20230927215632698.png)
+
 ### 12.1.2 流的分类
 
 - 根据待处理数据类型的不同，流可以分为字节流和字符流
@@ -31,6 +33,12 @@ Java 是通过 I/O 流技术完成数据读写操作的。流是由无结构化�
 
 在字节输出流中，OutputStream 是所有输出字节流的父类，它是一个抽象类。Byte Array Output Stream和所有 FilterOutputStream 是两种基本的实体流，它们分别向 Byte 数组和本地文件写入数据。PipedOutputStream 向与其他线程共用的管道中写入数据，ObjectOutputStream 和所有 FilterOutputStream 的子类都是装饰流。
 
+![image-20230927221929589](https://yong-gan-niu-niu-1311841992.cos.ap-beijing.myqcloud.com/images/image-20230927221929589.png)
+
+![image-20230927221951963](https://yong-gan-niu-niu-1311841992.cos.ap-beijing.myqcloud.com/images/image-20230927221951963.png)
+
+
+
 - **字符流**
 
 字符流是指在数据传输过程中以字符为单位进行输入和输出。根据字符编码表，一个字符占用两个字节，因此字符流只适用于字符类型数据的处理。字符流也属于实体流。
@@ -40,6 +48,10 @@ Java 是通过 I/O 流技术完成数据读写操作的。流是由无结构化�
 在字符输出流中，Writer 是所有输出字符流的父类，也是一个抽象类。相较于输入流的子类，输出流中也有相应的输出子类，只是数据传输方向相反，这些类有 OutputStreamReader 及其子类 FileWriter、CharArrayWriter、StringWriter、BufferWriter、PipedWriter 等。
 
 掌握输入输出流及其特点，可以帮助我们根据需要选择合适的类进行数据的输入和输出。
+
+![image-20230927222242238](https://yong-gan-niu-niu-1311841992.cos.ap-beijing.myqcloud.com/images/image-20230927222242238.png)
+
+![image-20230927222357228](https://yong-gan-niu-niu-1311841992.cos.ap-beijing.myqcloud.com/images/image-20230927222357228.png)
 
 ## 12.2 File 类
 
