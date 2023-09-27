@@ -9,7 +9,7 @@
 Java 是通过 I/O 流技术完成数据读写操作的。流是由无结构化的数据组成的序列，流中的数据没有任何格式和含义，只是以字节或字符形式进行流入或流出。数据流的流入和流出都是以程序本身作为核心：
 
 - 输入流 （读操作） 从外部数据源流入程序内部
-- 输出流 （写啊从做）数据从程序内部向外部流出到数据的目的地
+- 输出流 （写操作）数据从程序内部向外部流出到数据的目的地
 
 无论是流入还是流出，其数据都是通过一个管道进行的，管道两端分别连接数据源和数据目的地。流的本质就是进行数据传输，因此 Java 根据数据传输的特性将流抽象成各种类，以方便进行数据操作。
 
@@ -29,7 +29,7 @@ Java 是通过 I/O 流技术完成数据读写操作的。流是由无结构化�
 
 在字节输入流中，InputStream 类是所有输入字节流的父类，它是一个抽象类。其子类中的 ByteArrayInputStream、FileInputStream 是两种基本的实体流，它们分别从 Byte 数组和本地文件中读取数据。PipedInputStream 从与其他线程共用的管道中读取数据。ObjectInputStream 和所有 FilterInputStream 的子类都是装饰流，这些流在实体流的基础上进行数据加工以满足特定需求。
 
-在字节输出流中，OutputStream 是所有输出字节流的父类，它是一个抽象类。Byte Array Output Stream和所有 FilterOutputStream 是两种基本的实体流，它们分别向 Byte 数组和本地文件写入数据。PipedOutputStream 向与其他线程共用的管道中写入书韩剧，ObjectOutputStream 和所有 FilterOutputStream 的子类都是装饰流。
+在字节输出流中，OutputStream 是所有输出字节流的父类，它是一个抽象类。Byte Array Output Stream和所有 FilterOutputStream 是两种基本的实体流，它们分别向 Byte 数组和本地文件写入数据。PipedOutputStream 向与其他线程共用的管道中写入数据，ObjectOutputStream 和所有 FilterOutputStream 的子类都是装饰流。
 
 - **字符流**
 
@@ -60,7 +60,7 @@ TODO
 
 ### 12.2.2 目录
 
-Java 把目录作为一种特殊的文件进行处理。它除了具备文件的基本属性，如文件名、所在路径等信息意外，也提供了转暖用于目录的一些操作方法。
+Java 把目录作为一种特殊的文件进行处理。它除了具备文件的基本属性，如文件名、所在路径等信息意外，也提供了专用于目录的一些操作方法。
 
 目录操作的常用方法：
 
