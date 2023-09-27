@@ -63,9 +63,48 @@ Java 是通过 I/O 流技术完成数据读写操作的。流是由无结构化�
 
 File 类的常用构造方法和获取属性的方法：
 
+![image-20230927232449496](https://yong-gan-niu-niu-1311841992.cos.ap-beijing.myqcloud.com/images/image-20230927232449496.png)
+
 TODO
 
 ```java
+public class Example_01 {
+
+    /**
+     * 读取文件相关属性 如果不存在 则 创建
+     * @param args args
+     */
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please input filename: ");
+        String fileName = scanner.nextLine();
+        File file = new File(fileName);
+
+        System.out.println("file.getName() = " + file.getName());
+        System.out.println("file.length() = " + file.length());
+        System.out.println("file.getAbsoluteFile() = " + file.getAbsoluteFile());
+
+        if (file.isHidden()){
+            System.out.println("file is hidden");
+        }else {
+            System.out.println("file is not hidden");
+        }
+
+        if (!file.exists()){
+            System.out.println("file is not exist|");
+            try {
+                if (file.createNewFile()) {
+                    System.out.println("create successful");
+                }else {
+                    System.out.println("create fail");
+                }
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+}
 ```
 
 
@@ -97,7 +136,42 @@ FilenameFilter 接口中的方法如下
 这两个接口只是方法参数不用，所以可以选择合适的过滤器进行过滤。
 
 ```java
+/**
+     * 列出给定目录下的所有文件名，并列出给定拓展名的所有文件名
+     * @param args args
+     */
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please input file name");
+        String fileName = scanner.nextLine();
+        File file = new File(fileName);
+        String[] fileNameList = file.list();
+        if (fileNameList != null){
+            for (String s : fileNameList) {
+                System.out.println("s = " + s);
+            }
+        }else {
+            System.out.println("no file exist");
+        }
+        System.out.println("please input extend file prefix:  ");
+        String filePrefix = scanner.nextLine();
+        String[] filteredList = file.list(new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                return name.endsWith(filePrefix);
+            }
+        });
 
+        if (filteredList != null){
+            for (String s : filteredList) {
+                System.out.println("s = " + s);
+            }
+        }else {
+            System.out.println("no file exist");
+        }
+
+
+    }
 ```
 
 ### 12.2.3 文件的操作
@@ -148,7 +222,48 @@ File 类中删除文件的方法如下：
 例如： 执行记事本命令，打开一个新记事本：
 
 ```java
+    /**
+     * 原始人 启动！
+     * @param args
+     */
+    public static void main(String[] args) {
+        JFileChooser chooser = new JFileChooser();
+        chooser.setDialogTitle("Please choose file");
+/*        chooser.setFileFilter(new FileFilter() {
+            @Override
+            public boolean accept(File f) {
+                if (f.isDirectory()){
+                    return true;
+                }
+                int lastIndexOf = f.getName().lastIndexOf(".");
+                String extension = null;
+                if (lastIndexOf > 0 && lastIndexOf < f.getName().length() - 1){
+                    extension = f.getName().substring(lastIndexOf + 1).toLowerCase();
+                }
+                return extension != null && extension.equals("exe");
+            }
 
+            @Override
+            public String getDescription() {
+                return "EXE Files (*.exe)"; // 描述可选择的文件类型
+            }
+        });*/
+        chooser.setFileFilter(new FileNameExtensionFilter("EXE2 Files (*.exe)","exe"));
+
+        int result = chooser.showDialog(null,"choose");
+        try {
+            Runtime runtime = Runtime.getRuntime();
+            if (result == JFileChooser.APPROVE_OPTION){
+                File file = chooser.getSelectedFile();
+                runtime.exec(file.getAbsolutePath());
+                JOptionPane.showMessageDialog(null,file.getName() + "启动 !","run: ",JOptionPane.INFORMATION_MESSAGE);
+            }else {
+                System.out.println("user shutdown choose");
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 ```
 
 ### 12.2.4 Scanner 类与文件
@@ -163,7 +278,22 @@ File 类中删除文件的方法如下：
 例如：有一个购物清单：电视机 3200.00 元、只能收i就 2200.00 元、笔记本 4200.00 元，午餐 120.25 元，现统计该次购物共花费多少。该购物清单存放在文件 record.txt 中。
 
 ```java
+    /**
+     * 统计 record.txt 中的数据
+     * @param args
+     */
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner reader = new Scanner(new File("E:\\work_space\\IDEA\\ygnn_java\\java_book\\src\\main\\java\\ygnn\\cola\\study\\chapter12\\example\\record.txt"));
+        double price, total = 0.0;
 
+        reader.useDelimiter("[^0-9.]+");
+
+        while (reader.hasNext()){
+            price = reader.nextDouble();
+            total += price;
+        }
+        System.out.println("total = " + total);
+    }
 ```
 
 ## 12.3 实体流

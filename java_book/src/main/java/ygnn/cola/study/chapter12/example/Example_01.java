@@ -12,6 +12,11 @@ import java.util.Scanner;
  * @since 1.0.0
  */
 public class Example_01 {
+
+    /**
+     * 读取文件相关属性 如果不存在 则 创建
+     * @param args args
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please input filename: ");

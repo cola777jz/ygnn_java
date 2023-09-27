@@ -12,6 +12,10 @@ import java.io.IOException;
  * @since 1.0.0
  */
 public class Example_03 {
+    /**
+     * 原始人 启动！
+     * @param args
+     */
     public static void main(String[] args) {
         JFileChooser chooser = new JFileChooser();
         chooser.setDialogTitle("Please choose file");

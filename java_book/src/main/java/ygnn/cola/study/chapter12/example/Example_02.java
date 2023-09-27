@@ -11,6 +11,10 @@ import java.util.Scanner;
  * @since 1.0.0
  */
 public class Example_02 {
+    /**
+     * 列出给定目录下的所有文件名，并列出给定拓展名的所有文件名
+     * @param args args
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please input file name");
