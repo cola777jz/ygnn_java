@@ -1,5 +1,6 @@
 package ygnn.cola.study.day19;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
@@ -20,5 +21,7 @@ public class RegexDomain {
 
         List<Integer> list = matcher.results().map(MatchResult::group).map(Integer::parseInt).toList();
         System.out.println("list = " + list);
+        String[] split = text.split("[a-z]+");
+        System.out.println("split = " + Arrays.toString(split));
     }
 }
